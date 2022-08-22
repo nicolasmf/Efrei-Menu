@@ -1,0 +1,4 @@
+.vscode
+geckodriver.log
+__pycache__
+precommit.py
