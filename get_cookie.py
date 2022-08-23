@@ -28,7 +28,7 @@ def connect_manually() -> str:
     return myefrei_sid
 
 
-def connect_automatically() -> str | None:
+def connect_automatically() -> str:
     print("[*] Getting cookie...")
 
     options = Options()
