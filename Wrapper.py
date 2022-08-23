@@ -162,6 +162,3 @@ class Wrapper:
             credentials.truncate()
 
             print("Identifiants sauvegardés dans variables.json")
-
-
-wrapper = Wrapper()
