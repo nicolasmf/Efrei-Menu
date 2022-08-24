@@ -61,12 +61,14 @@ def connect_automatically() -> str:
                 driver.close()
                 return connect_manually()
 
-            elif driver.find_elements_by_xpath(
-                "/html/body/div/div[2]/main/div[3]/div/div/h5"
-            ):
-                break
         except NoSuchElementException:
-            pass
+            try:
+                if driver.find_elements_by_xpath(
+                    "/html/body/div/div[2]/main/div[3]/div/div/h5"
+                ):
+                    break
+            except NoSuchElementException:
+                pass
 
     cookies = driver.get_cookies()
 
@@ -88,5 +90,3 @@ with open("variables.json", "r") as file:
         myefrei_sid = connect_automatically()
 
 os.system("cls" if os.name == "nt" else "clear")
-
-print(myefrei_sid)
