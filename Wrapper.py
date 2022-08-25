@@ -121,7 +121,8 @@ class Wrapper:
 
             new_subject = Subject(subject, mean, grades)
 
-            results.append(new_subject)
+            if new_subject not in results:
+                results.append(new_subject)
 
         return results
 
@@ -131,7 +132,10 @@ class Wrapper:
 
         for subject in subjects:
 
-            print(subject.name, ":", "", end="")
+            if len(subject.grades) == 0:
+                print(subject.name, "", end="")
+            else:
+                print(subject.name, ":", "", end="")
 
             for i in range(len(subject.grades)):
                 print(subject.grades[i].type_, f"({subject.grades[i].coeff})", end=" ")
