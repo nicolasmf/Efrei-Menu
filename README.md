@@ -25,5 +25,6 @@ Pour que les appels API soient valides, il faut récupérer un cookie de session
 - [x] Possibilité de récupérer le cookie de session automatiquement
 - [x] Voir son emploi du temps de la semaine
 - [ ] Voir son emploi du temps du jour
+- [ ] Générer un tableau excel de ses notes 
 
 N'hésitez pas à rédiger une issue si vous avez des questions ou des suggestions.
