@@ -16,6 +16,10 @@ Un menu permettant d'accéder rapidement aux différents services de l'Efrei.
 
 [Installation du driver sur windows](https://stackoverflow.com/questions/42524114/how-to-install-geckodriver-on-a-windows-system)
 
+Installation du driver sur Mac : `λ brew install geckodriver`
+
+Je suppose que les utilisateurs de Linux savent faire leurs propres recherches. 👀
+
 ### Précisions sur "Actualiser mes identifiants"
 
 Pour que les appels API soient valides, il faut récupérer un cookie de session temporaire. Pour ce faire, le programme va vous demander de vous connecter sur le site web de l'Efrei. Par défaut, une page s'ouvre et vous devez vous connecter manuellement. Mais si vous le souhaitez, vous pouvez enregistrer vos identifiants pour que le programme se connecte automatiquement.
