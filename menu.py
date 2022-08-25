@@ -1,5 +1,6 @@
 import json
 import os
+from time import sleep
 from Wrapper import Wrapper
 
 HEADER = """ 
@@ -23,7 +24,8 @@ def show_menu() -> str:
         if data["semester"] != ""
         else ""
     )
-    print("4. Actualiser mes identifiants")
+    print("4. Voir mon emploi du temps de la semaine")
+    print("5. Actualiser mes identifiants")
     print("0. Quitter")
     return input("> ")
 
@@ -43,10 +45,14 @@ def interact(answer, wrapper):
         wrapper.change_semester(input("Entrez le numéro du semestre désiré : "))
 
     elif answer == "4":
+        wrapper.print_course_week()
+
+    elif answer == "5":
         wrapper.save_credentials()
 
     else:
         print("Entrez une commande valide.")
+        sleep(1)
         return
 
     print()

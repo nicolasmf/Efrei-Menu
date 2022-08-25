@@ -2,7 +2,9 @@ from typing import List
 import requests
 from Subject import Subject
 from Grade import Grade
+from Course import Course
 import json
+from datetime import datetime, timedelta
 
 
 class Wrapper:
@@ -10,7 +12,7 @@ class Wrapper:
     request: dict = {}
 
     def __init__(self) -> None:
-        self.request = self.make_request()
+        self.request = self.make_request_subjects()
 
     def change_semester(self, semester_number):
 
@@ -23,7 +25,7 @@ class Wrapper:
             json.dump(data, semester)
             semester.truncate()
 
-        if self.make_request() == {}:
+        if self.make_request_subjects() == {}:
             with open("variables.json", "r+") as semester:
                 data = json.load(semester)
                 data["semester"] = temp_semester_number
@@ -35,11 +37,11 @@ class Wrapper:
             print("Erreur, le numéro de semestre n'est pas valide")
             return
 
-        self.request = self.make_request()
+        self.request = self.make_request_subjects()
 
         print("Semestre changé !")
 
-    def make_request(self) -> dict:
+    def make_request_subjects(self) -> dict:
         with open("variables.json", "r") as cookie:
 
             cookie.seek(0)
@@ -50,7 +52,7 @@ class Wrapper:
 
             if myefrei_sid == "":
                 self.get_cookie()
-                return self.make_request()
+                return self.make_request_subjects()
 
         HEADERS = {
             "Host": "www.myefrei.fr",
@@ -66,7 +68,7 @@ class Wrapper:
 
         except requests.exceptions.TooManyRedirects:
             self.get_cookie()
-            self.make_request()
+            return self.make_request_subjects()
 
     def get_cookie(self) -> str:
         from get_cookie import myefrei_sid
@@ -162,3 +164,84 @@ class Wrapper:
             credentials.truncate()
 
             print("Identifiants sauvegardés dans variables.json")
+
+    def get_course_week(self) -> List[Course]:
+
+        today_date = (
+            f"{datetime.now().year}-{datetime.now().month}-{datetime.now().day}"
+        )
+        today_date_raw = datetime.strptime(today_date, "%Y-%m-%d")
+
+        week_start_raw = today_date_raw - timedelta(days=today_date_raw.weekday())
+        week_end_raw = week_start_raw + timedelta(days=6)
+
+        week_start = week_start_raw.strftime("%Y-%m-%d")
+        week_end = week_end_raw.strftime("%Y-%m-%d")
+
+        with open("variables.json", "r") as cookie:
+
+            data = json.load(cookie)
+            myefrei_sid = data["myefrei.sid"]
+
+        HEADERS = {
+            "Host": "www.myefrei.fr",
+            "Cookie": "myefrei.sid=" + myefrei_sid,
+        }
+
+        re = requests.get(
+            f"https://www.myefrei.fr/api/extranet/student/queries/planning?enddate={week_end}&startdate={week_start}",
+            headers=HEADERS,
+        )
+
+        list_of_courses = []
+
+        for course in re.json()["rows"]:
+
+            course_start = course["timeCrTimeFrom"].zfill(4)
+            start = f"{course_start[0:2]}:{course_start[2:4]}"
+
+            course_end = course["timeCrTimeTo"].zfill(4)
+            end = f"{course_end[0:2]}:{course_end[2:4]}"
+
+            course_room = course["srvTimeCrDelRoom"].split(",")
+
+            if course_room[-1] == "VISIO":
+                room = "VISIO"
+            else:
+                room = f"{course_room[0]} Bat. {course_room[1]} {course_room[2]}"
+
+            list_of_courses.append(
+                Course(
+                    course["prgoOfferingDesc"],
+                    course["srvTimeCrDateFrom"][0:10],
+                    start,
+                    end,
+                    course["tchResName"],
+                    room,
+                    course["valDescription"],
+                )
+            )
+
+        return list_of_courses
+
+    def print_course_week(self) -> None:
+
+        list_of_courses = self.get_course_week()
+
+        first_date = list_of_courses[0].date
+
+        print(f"\n{list_of_courses[0].date[-2:]}/{list_of_courses[0].date[5:7]}")
+
+        for course in list_of_courses:
+            if course.date != first_date:
+                print("\n----------")
+                print(f"\n{course.date[-2:]}/{course.date[5:7]}")
+
+            first_date = course.date
+
+            print(
+                f"""
+{course.start}-{course.end}
+{course.name} ({course.description})
+{course.room} - {course.teacher}"""
+            )
