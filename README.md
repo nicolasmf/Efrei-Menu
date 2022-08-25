@@ -1,6 +1,6 @@
 # Efrei Menu
 
-![menu](https://media.discordapp.net/attachments/972604017261830176/1012303303104811018/unknown.png)
+![menu](https://media.discordapp.net/attachments/972604017261830176/1012347118847016970/unknown.png)
 
 Un menu permettant d'accéder rapidement aux différents services de l'Efrei.
 
@@ -25,6 +25,6 @@ Pour que les appels API soient valides, il faut récupérer un cookie de session
 - [x] Possibilité de récupérer le cookie de session automatiquement
 - [x] Voir son emploi du temps de la semaine
 - [ ] Voir son emploi du temps du jour
-- [ ] Générer un tableau excel de ses notes
+- [x] Générer un tableau excel de ses notes
 
 N'hésitez pas à rédiger une issue si vous avez des questions ou des suggestions.
