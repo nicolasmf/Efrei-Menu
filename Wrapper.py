@@ -268,6 +268,21 @@ class Wrapper:
             i.font = Font(bold=True)
 
         for subject in subjects:
+
+            full = True
+
+            for grade in subject.grades:
+                if grade.grade == "":
+                    full = False
+
+            if full and subject.mean != "":
+                subject_mean = 0
+                for grade in subject.grades:
+                    subject_mean += float(grade.grade.replace(",", ".")) * float(
+                        grade.coeff
+                    )
+                subject_mean = str(subject_mean)
+
             worksheet.append([subject.name, subject.mean])
             for grade in subject.grades:
                 worksheet.append(["", "", grade.type_, grade.coeff, grade.grade])
