@@ -2,5 +2,5 @@
 geckodriver.log
 __pycache__
 precommit.py
-variable.json
+variables.json
 *.xlsx
