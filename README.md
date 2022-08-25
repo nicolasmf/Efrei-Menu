@@ -1,6 +1,6 @@
 # Efrei Menu
 
-![menu](https://media.discordapp.net/attachments/842511727324561429/1011238736882847814/unknown.png)
+![menu](https://media.discordapp.net/attachments/972604017261830176/1012303303104811018/unknown.png)
 
 Un menu permettant d'accéder rapidement aux différents services de l'Efrei.
 
@@ -23,6 +23,7 @@ Pour que les appels API soient valides, il faut récupérer un cookie de session
 - [x] Voir ses notes pour chaque semestre
 - [x] Possibilité de changer de semestre
 - [x] Possibilité de récupérer le cookie de session automatiquement
-- [ ] Voir son emploi du temps de la semaine
+- [x] Voir son emploi du temps de la semaine
+- [ ] Voir son emploi du temps du jour
 
 N'hésitez pas à rédiger une issue si vous avez des questions ou des suggestions.
