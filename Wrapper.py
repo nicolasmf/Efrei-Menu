@@ -284,6 +284,7 @@ class Wrapper:
                 subject_mean = str(subject_mean)
 
             worksheet.append([subject.name, subject.mean])
+
             for grade in subject.grades:
                 worksheet.append(["", "", grade.type_, grade.coeff, grade.grade])
             worksheet.append([])
