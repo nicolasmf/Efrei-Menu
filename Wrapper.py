@@ -5,6 +5,8 @@ from Grade import Grade
 from Course import Course
 import json
 from datetime import datetime, timedelta
+from openpyxl import Workbook
+from openpyxl.styles import Font
 
 
 class Wrapper:
@@ -245,3 +247,36 @@ class Wrapper:
 {course.name} ({course.description})
 {course.room} - {course.teacher}"""
             )
+
+    def generate_excel(self) -> None:
+
+        print("Génération du fichier Excel...")
+
+        subjects = self.get_subjects_info()
+        workbook = Workbook()
+        worksheet = workbook.active
+        worksheet.title = "Notes"
+        worksheet.append(["Subject", "Mean", "Type", "Coeff", "Grade"])
+
+        top_cell = worksheet["A1:E1"]
+
+        for i in top_cell[0]:
+            i.font = Font(bold=True)
+
+        for subject in subjects:
+            worksheet.append([subject.name, subject.mean])
+            for grade in subject.grades:
+                worksheet.append(["", "", grade.type_, grade.coeff, grade.grade])
+            worksheet.append([])
+
+        worksheet.column_dimensions["A"].width = (
+            len(max(subjects, key=lambda x: len(x.name)).name) - 2
+        )
+
+        with open("variables.json", "r") as file:
+            data = json.load(file)
+            semester = data["semester"]
+
+            workbook.save(f"notes-S{semester}.xlsx")
+
+            print(f"Fichier Excel généré sous le nom notes-S{semester}.xlsx")

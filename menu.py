@@ -25,7 +25,8 @@ def show_menu() -> str:
         else ""
     )
     print("4. Voir mon emploi du temps de la semaine")
-    print("5. Actualiser mes identifiants")
+    print("5. Générer un excel de mes notes")
+    print("6. Actualiser mes identifiants")
     print("0. Quitter")
     return input("> ")
 
@@ -48,6 +49,9 @@ def interact(answer, wrapper):
         wrapper.print_course_week()
 
     elif answer == "5":
+        wrapper.generate_excel()
+
+    elif answer == "6":
         wrapper.save_credentials()
 
     else:
