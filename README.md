@@ -12,11 +12,17 @@ Un menu permettant d'accéder rapidement aux différents services de l'Efrei.
 λ python3 menu.py
 ```
 
-⚠️ Ce programme utilise selenium pour Firefox. Il faut donc que Firefox soit installé sur votre ordinateur et que son [driver](https://github.com/mozilla/geckodriver/releases) soit téléchargé.
+⚠️ Pour utiliser ce programme, vous devez télécharger le driver de Firefox [(geckodriver)](https://github.com/mozilla/geckodriver/releases) ou celui de Chrome [(chromedriver)](https://sites.google.com/chromium.org/driver/) et les navigateurs correspondants.
 
-[Installation du driver sur windows](https://stackoverflow.com/questions/42524114/how-to-install-geckodriver-on-a-windows-system)
+Pour choisir votre navigateur, changez la valeur de la variable `browser` dans le fichier `variables.json` (Firefox/Chrome).
 
-Installation du driver sur Mac : `λ brew install geckodriver`
+[Installation du driver Firefox sur windows](https://stackoverflow.com/questions/42524114/how-to-install-geckodriver-on-a-windows-system)
+
+[Installation du driver Chrome sur windows](https://chromedriver.chromium.org/getting-started)
+
+Installation du driver Firefox sur Mac : `λ brew install geckodriver`
+
+Installation du driver Chrome sur Mac : `λ brew install chromedriver`
 
 Je suppose que les utilisateurs de Linux savent faire leurs propres recherches. 👀
 
@@ -31,7 +37,7 @@ Pour que les appels API soient valides, il faut récupérer un cookie de session
 - [x] Possibilité de changer de semestre
 - [x] Possibilité de récupérer le cookie de session automatiquement
 - [x] Voir son emploi du temps de la semaine
-- [ ] Voir son emploi du temps du jour
 - [x] Générer un tableau excel de ses notes
+- [ ] Voir son emploi du temps du jour
 
 N'hésitez pas à rédiger une issue si vous avez des questions ou des suggestions.

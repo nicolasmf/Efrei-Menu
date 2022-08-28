@@ -5,12 +5,20 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.common.exceptions import NoSuchElementException
 
 
 def connect_manually() -> str:
-    driver = webdriver.Firefox()
+
+    with open("variables.json", "r") as file:
+        data = json.load(file)
+        if data["browser"].lower() == "firefox":
+            driver = webdriver.Firefox()
+        else:
+            driver = webdriver.Chrome()
+
     driver.get("https://auth.myefrei.fr/")
 
     WebDriverWait(driver, 120).until(
@@ -31,11 +39,22 @@ def connect_manually() -> str:
 def connect_automatically() -> str:
     print("[*] Getting cookie...")
 
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
+    with open("variables.json", "r") as file:
+        data = json.load(file)
+        if data["browser"].lower() == "firefox":
+            options = FirefoxOptions()
+            options.add_argument("--headless")
+            options.add_argument("--disable-gpu")
 
-    driver = webdriver.Firefox(options=options)
+            driver = webdriver.Firefox(options=options)
+
+        else:
+            options = ChromeOptions()
+            options.add_argument("--headless")
+            options.add_argument("--disable-gpu")
+
+            driver = webdriver.Chrome(options=options)
+
     driver.get("https://auth.myefrei.fr/")
 
     username = WebDriverWait(driver, 10).until(
