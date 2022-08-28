@@ -7,7 +7,7 @@ Un menu permettant d'accéder rapidement aux différents services de l'Efrei.
 ## Utilisation
 
 ```bash
-λ cp variable.json.template variable.json
+λ cp variables.json.template variables.json
 λ pip install -r requirements.txt
 λ python3 menu.py
 ```
