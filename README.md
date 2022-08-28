@@ -17,8 +17,11 @@ Un menu permettant d'accéder rapidement aux différents services de l'Efrei.
 Pour choisir votre navigateur, changez la valeur de la variable `browser` dans le fichier `variables.json` (Firefox/Chrome).
 
 [Installation du driver Firefox sur windows](https://stackoverflow.com/questions/42524114/how-to-install-geckodriver-on-a-windows-system)
-
 [Installation du driver Chrome sur windows](https://chromedriver.chromium.org/getting-started)
+
+OU
+
+Lancez `install_driver_chrome.ps1` ou `install_driver_firefox.ps1`.
 
 Installation du driver Firefox sur Mac : `λ brew install geckodriver`
 
