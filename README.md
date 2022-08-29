@@ -6,12 +6,6 @@ Un menu permettant d'accéder rapidement aux différents services de l'Efrei.
 
 ## Utilisation
 
-```bash
-λ cp variables.json.template variables.json
-λ pip install -r requirements.txt
-λ python3 menu.py
-```
-
 ⚠️ Pour utiliser ce programme, vous devez télécharger le driver de Firefox [(geckodriver)](https://github.com/mozilla/geckodriver/releases) ou celui de Chrome [(chromedriver)](https://sites.google.com/chromium.org/driver/) et les navigateurs correspondants.
 
 Pour choisir votre navigateur, changez la valeur de la variable `browser` dans le fichier `variables.json` (Firefox/Chrome).
@@ -28,6 +22,12 @@ Installation du driver Firefox sur Mac : `λ brew install geckodriver`
 Installation du driver Chrome sur Mac : `λ brew install chromedriver`
 
 Je suppose que les utilisateurs de Linux savent faire leurs propres recherches. 👀
+
+```bash
+λ cp variables.json.template variables.json
+λ pip install -r requirements.txt
+λ python3 menu.py
+```
 
 ### Précisions sur "Actualiser mes identifiants"
 
