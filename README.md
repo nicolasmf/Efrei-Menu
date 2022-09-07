@@ -1,8 +1,12 @@
-# Efrei Menu
+# Efrei Menu ⚠️ DEPRECATED ⚠️
 
 ![menu](https://media.discordapp.net/attachments/972604017261830176/1012347118847016970/unknown.png)
 
 Un menu permettant d'accéder rapidement aux différents services de l'Efrei.
+
+## DEPRECATED
+
+Suite à une mise à jour de l'API de l'Efrei, ce programme n'est plus fonctionnel.
 
 ## Utilisation
 
